@@ -20,7 +20,8 @@ Creating an Approachable Data Product with R using Shiny and rCharts
 http://wsurles.github.io/creating_an_approachable_data_product_with_R/  
 
 I used google big query to get the github data. I provided it here in `/data`.   
-You can see how I got the data in `/cron/get_data.R`.   
+You can see how I got the data in `/cron/get_data.R`.  
+This data is not being actively updated with the cron script.  
 The queries are in `/lib`.  
   
 Please help me make this app better!

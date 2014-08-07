@@ -1,5 +1,6 @@
 <script type='text/javascript'>
 
+// This will make a hash in the url so each individual analysis is linkable
 $(document).ready(function(){
 
 	if (window.location.hash) {
