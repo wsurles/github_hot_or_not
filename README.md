@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Github Hot or Not
 This is a full implementation of a shiny app with lots of tricks to make it awesome
 
@@ -111,3 +112,9 @@ I added the code selectize.css to the bottom of this file.
 
 
 
+=======
+github_hot_or_not
+=================
+
+A Shiny App that analyzes what repos are hot on github. 
+>>>>>>> f81b2a0387a46b06b0d11901ef9002f5803500b8
