@@ -150,7 +150,7 @@ createPlotGithub <- function(df2, color) {
 ##| --------------------------------------------
 
 ##| Language
-output$language <- renderUI({
+output$repo_language <- renderUI({
   
   lang_list <- c('JavaScript','Python','R')
   

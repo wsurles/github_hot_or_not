@@ -3,7 +3,7 @@
 ##| Net Worth
 ##|----------------
 
-output$github <- renderUI({
+output$repo <- renderUI({
   
 
   list(
@@ -19,14 +19,14 @@ output$github <- renderUI({
     ##| Help
     fluidRow(
       column(3, offset = 3, helpModal('Explain this Tool','help_github',inclMD("help/github_hot_or_not.md"))),          
-      column(2, offset = 0, emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on Shiny Workshop'))
+      column(2, offset = 0, emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on Github Hot or Not'))
     ),
     # br(),
     hr(),
 
     ##| Filters
     fluidRow(
-      column(2, offset = 1, uiOutput("language")),
+      column(2, offset = 1, uiOutput("repo_language")),
       column(3, offset = 0, uiOutput("repo_owner"))
     ),
     hr(),
@@ -51,20 +51,14 @@ output$github <- renderUI({
   )
 })
 
-output$examples <- renderUI({
+output$language <- renderUI({
 
   list()
 
 })
 
-output$page1 <- renderUI({
+output$contributor <- renderUI({
   
   h3('Page 1')
-
-})
-
-output$page2 <- renderUI({
-  
-  h3('Page 2')
 
 })
