@@ -15,9 +15,12 @@ shinyUI(
     tabPanel("Language", value = "language", 
       includeHTML("www/data_hub_scripts.js"),
       includeHTML("www/get_font_awesome.html"),
-      uiOutput("language")),  
-    
-    tabPanel("Repo", value = "repo", uiOutput("repo")),
+      uiOutput("language")
+    ),
+    navbarMenu("Repo", value = 'repo',
+      tabPanel("Top 500", id = 'test', uiOutput("repo_top")),
+      tabPanel("Top 100 by Language", uiOutput("repo_top_lang"))
+    ),
     tabPanel("Contributor", value = "contributor", uiOutput("contributor"))
 	)
 )

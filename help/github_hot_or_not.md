@@ -3,7 +3,7 @@
 - This chart shows repos as bubbles.   
 - Up means more stars. Right means older.  
 - Bubble size is based on number of forks.       
-- Bubbles are colored by Stars/Day.   
+- Bubbles are colored by Stars/Week.   
 - Green and blue are Hot. Orange and red are not as hot.
 - The new hottness will be on the lower to mid left. 
 - Older staples will be on the upper to mid right

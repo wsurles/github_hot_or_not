@@ -1,12 +1,22 @@
 
+# setwd("~/Dev/non_work_projects/github_hot_or_not")
 library(bigrquery)
 
 ##|-----------------------------------------
 ##| Get github data from google big query
 ##|-----------------------------------------
 
-##| NOTE: This is not a real billing number. 
-billing_project <- "123456789" # put your project number here
+source("creds/creds_bigquery.R")
+
+
+##| Repos
+sql <- paste(readLines("lib/query_repos.sql", warn=F), collapse="\n")
+df <- query_exec("publicdata", "samples", sql, billing = billing_project, max_pages = Inf)
+save(df, file = 'data/repos.RData')
+
+# sql <- paste(readLines("lib/query_repos_stars.sql", warn=F), collapse="\n")
+# df <- query_exec("publicdata", "samples", sql, billing = billing_project, max_pages = Inf)
+# save(df, file = 'data/repos_stars.RData')
 
 ##| R
 sql <- paste(readLines("lib/query_repos_R_top_watchers.sql", warn=F), collapse="\n")
