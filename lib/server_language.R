@@ -76,7 +76,7 @@ filterLanguage <- reactive({
 
 setColorLanguage <- function(df2, df3) {
 
-  color_list <- c('whitesmoke','orangered', 'orange', 'steelblue', 'forestgreen')
+  color_list <- c('whitesmoke', 'steelblue','forestgreen', 'orange', 'orangered')
 
   groups <- unique(levels(df2$group))
 
