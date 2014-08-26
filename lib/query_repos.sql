@@ -1,5 +1,5 @@
 SELECT 
-   gt.repository_name as name
+   gt.repository_name as repo_name
   ,gt.repository_owner as owner
   ,gt.repository_language as language
   ,gt.repository_created_at as created_at
@@ -17,7 +17,7 @@ INNER JOIN EACH(
      ,MAX(created_at) AS created_at
     FROM [githubarchive:github.timeline] 
     WHERE
-      PARSE_UTC_USEC(created_at) >= PARSE_UTC_USEC("2014-08-14 00:00:00")
+      PARSE_UTC_USEC(created_at) >= PARSE_UTC_USEC("2014-01-01 00:00:00")
       AND repository_watchers > 0
     GROUP BY repository_name
     ORDER BY stars DESC

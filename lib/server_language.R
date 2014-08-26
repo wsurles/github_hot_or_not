@@ -3,14 +3,15 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-
 crunchDataLanguage <- function(df) {
   
+  df <- unique(df_repos)
+
   df2 <- df %>%
     group_by(language) %>%
     summarize(
       stars = sum(stars),
-      repos = length(name),
+      repos = length(repo_name),
       forks = sum(forks)
     ) %>%
     filter(!(is.na(language))) %>%
@@ -51,79 +52,6 @@ crunchDataLanguage <- function(df) {
   return(df2)
 }
 
-# chooseLang <- reactive({
-# 
-#   ## This makes the chart wait until the input is loaded
-#   choice_lang <- ifelse(is.null(input$lang), 'R', input$lang)
-#   
-#   switch(choice_lang,
-#         JavaScript = load('data/repos_javascript.RData'),
-#         Python = load('data/repos_python.RData'),
-#         R = load('data/repos_R.RData')
-#         )
-# 
-#   return(df)
-# 
-#   })
-# 
-# chooseBreaks <- reactive({
-# 
-#   ## This makes the chart wait until the input is loaded
-#   choice_lang <- ifelse(is.null(input$lang), 'R', input$lang)
-#   
-#   if (choice_lang == 'JavaScript') {
-#     
-#     breakpoints <- c(0, 5.5, 10.5, 15.5, 10000)
-#     labels <- c("5-0", "10-6", "15-11","16+")
-#   
-#   } else if (choice_lang == 'Python') {
-#   
-#     breakpoints <- c(0, 1.5, 3.5, 6.5, 10000)
-#     labels <- c("1-0", "3-1", "6-3","6+")    
-#   
-#   } else {
-#   
-#     breakpoints <- c(0, .15, .45, 1, 10000)
-#     labels <- c(".1-0", ".4-.2", "1-.5","1+")
-#   
-#   }
-# 
-#   return(list(breakpoints, labels))
-# 
-# })
-
-# crunchDataGithub <- function(df) {
-# 
-#   result <- chooseBreaks()
-#   breakpoints <- result[[1]]
-#   labels <- result[[2]]
-#   
-#   df <- unique(df)
-#   df <- df[1:100,]
-# 
-#   df2 <- df %>%
-#     mutate(
-#       date_created = as.Date(created_at),
-#       date_created_str = as.character(date_created),
-#       age_days = as.numeric(today() - date_created),
-#       
-#       watch_per_day = round(watchers/age_days, 1),
-#       
-#       log_forks = log10(forks),
-#       log_forks = ifelse(is.finite(log_forks) == F, 0, log_forks),
-#       
-#       watch_group = cut(watch_per_day, breaks = breakpoints, include.lowest = T, right = T, label = labels, ordered = T), 
-#       watch_group = ordered(watch_group, levels = c(labels, '')),
-# 
-#       homepage = ifelse(is.na(homepage),'', homepage)
-#     ) %>%
-#     arrange(desc(watch_group))
-# 
-#   return(df2)
-# 
-# }
-# 
-
 filterLanguage <- reactive({
   ##| Fitler on Language
   ##| - Change the -group- for all points that do not match filter selection
@@ -144,7 +72,6 @@ filterLanguage <- reactive({
   return(df3)
   
 })
-
 
 setColorLanguage <- function(df2, df3) {
 
@@ -167,10 +94,12 @@ setColorLanguage <- function(df2, df3) {
 ##| Plot Functions
 ##| --------------------------------------------
 
-
 createPlotLanguage <- function(df3, color) {
 
-  p <- nPlot(log_stars ~ log_repos, group = 'group', data = df3, type = 'scatterChart')
+  df4 <- select(df3, log_stars, log_repos, group, log_forks, language, stars_per_repo,
+    stars, repos, forks)
+  
+  p <- nPlot(log_stars ~ log_repos, group = 'group', data = df4, type = 'scatterChart')
   p$yAxis(axisLabel = 'Stars')
   p$xAxis(axisLabel = 'Repos')
   p$chart(size = '#! function(d){return d.log_forks} !#')
@@ -191,7 +120,6 @@ return(p)
 
 }
 
-
 ##| --------------------------------------------
 ##| Render UI Functions
 ##| --------------------------------------------
@@ -207,23 +135,9 @@ output$lang_language <- renderUI({
               multiple = TRUE)
 })
 
-# ##| Owner
-# output$repo_owner <- renderUI({
-#   
-#   df <- chooseLang()
-#   df2 <- crunchDataGithub(df)
-#   owner_list <- sort(unique(df2$owner))
-#   
-#   selectizeInput(inputId = "owner",
-#                  label = h4("Owner:"),
-#                  choices = owner_list,
-#                  multiple = TRUE)
-# })
-
 ##| --------------------------------------------
 ##| Render Output Functions
 ##| --------------------------------------------
-
 
 output$plot_language <- renderChart2({    
   

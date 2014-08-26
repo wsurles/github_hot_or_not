@@ -7,6 +7,13 @@ library(markdown)
 
 ##| Create a button link for referencing external urls. 
 ##| - Its compactly and pretty and looks good in a table
+createGravatarImage <- function(id) {
+  sprintf('
+    <img src="http://www.gravatar.com/avatar/%s?s=40" />
+      ', id)
+}
+
+##| create gravatar
 createButtonLink <- function(link, text) {
   sprintf('
       <a class="mcnButton" 
@@ -26,7 +33,6 @@ createButtonLink <- function(link, text) {
              >%s</button>
              ',link, text)
 }
-
 ##| Email button so I can get some feedback from users
 emailButton <- function(title, link) {
   html <- sprintf("<a href='%s'  class='btn btn-success btn-lg'>%s</a>", link, title)
