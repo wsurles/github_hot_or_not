@@ -3,6 +3,8 @@
 This is a Shiny app to analyze what github repos are hot.  
 It looks at the top 100 starred repos by language and allows you to drill down to the repo and homepage.
 
+![](help/figures/scatter.png)
+
 This is intended as a demo of Shiny and rCharts functionality that I find useful. 
  - A great NVD3 scatter chart made with rCharts
  - Fitlers that affect the chart and table

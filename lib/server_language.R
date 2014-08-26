@@ -3,9 +3,10 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-crunchDataLanguage <- function(df) {
+crunchDataLanguage <- function(df_repos) {
   
-  df <- unique(df_repos)
+#   df <- unique(df_repos)
+  df <- df_repos
 
   df2 <- df %>%
     group_by(language) %>%
@@ -59,7 +60,7 @@ filterLanguage <- reactive({
   ##| - '' group will be plotted in a light color
   ##| - Rearrange after changing group to maintain color order
     
-  df3 <- crunchDataLanguage(df)
+  df3 <- crunchDataLanguage(df_repos)
   # input <- data.frame(lang_language = 'CSS')
   
   ## Filter dots 
@@ -127,7 +128,7 @@ return(p)
 ##| Language
 output$lang_language <- renderUI({
   
-  lang_list <- sort(unique(df$language))
+  lang_list <- sort(unique(df_repos$language))
   
   selectizeInput(inputId = "lang_language",
               label = h4("Language:"),
@@ -141,7 +142,7 @@ output$lang_language <- renderUI({
 
 output$plot_language <- renderChart2({    
   
-  df2 <- crunchDataLanguage(df)
+  df2 <- crunchDataLanguage(df_repos)
   df3 <- filterLanguage()
   color <- setColorLanguage(df2,df3)
   n <- createPlotLanguage(df3, color)  

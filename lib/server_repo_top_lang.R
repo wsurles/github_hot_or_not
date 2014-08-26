@@ -8,7 +8,7 @@ crunchDataRepoTopLang <- reactive({
   # choice_lang <- 'R'
   choice_lang <- if (is.null(input$repo_top_language_lang)) 'JavaScript' else input$repo_top_language_lang
   
-  df <- unique(df_repos)
+  df <- df_repos
   
   ## Initial crunch
   df2 <- df %>%
@@ -155,7 +155,7 @@ createPlotRepoTopLang <- function(df3, color) {
 ##| Language
 output$repo_top_language_lang <- renderUI({
   
-  lang_list <- sort(unique(df$language))
+  lang_list <- sort(unique(df_repos$language))
   
   selectizeInput(inputId = "repo_top_language_lang",
               label = h4("Language:"),

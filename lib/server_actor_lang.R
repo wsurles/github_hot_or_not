@@ -3,8 +3,9 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-tmp1 <- unique(select(df_actors, -language))
-tmp2 <- unique(select(df_repos, language, repo_name))
+tmp1 <- df_actors[colnames(df_actors) != 'language']
+# tmp1 <- select(df_actors, -language)
+tmp2 <- select(df_repos, language, repo_name)
 df <- left_join(tmp1, tmp2, by = 'repo_name')
 
 filterActorLang <- reactive({
