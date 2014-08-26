@@ -10,6 +10,8 @@ crunchDataRepoTopLang <- reactive({
   
   df <- df_repos
   
+
+    
   ## Initial crunch
   df2 <- df %>%
     filter(language == choice_lang) %>%
@@ -30,45 +32,53 @@ crunchDataRepoTopLang <- reactive({
   
   df2 <- df2[1:min(100, dim(df2)[1]),]
   
-#   str(df2)
+  ## Wrapping this in an if statement prevents an error message when no language is selected
   
-  ##| Set breakpoints and labels
-
-  if (dim(df2)[1] >= 10) {
-    
-    breakpoints <- ceiling(quantile(df2$stars_per_week))
-    breakpoints[1] <- 0
-    breakpoints <- sprintf("%02d", breakpoints)
-    
-    if (all(!duplicated(breakpoints))==F) {
-      breakpoints <- round(quantile(df2$stars_per_week),3)
-      breakpoints[1] <- 0
-      breakpoints <- sprintf("%02.3f", breakpoints)
-    }
-    
-    labels <- character()
-    for (i in 1:(length(breakpoints) - 1)) {
-      labels[i] <- paste0(sprintf("%02s", breakpoints[i]), "-", sprintf("%02s", breakpoints[i+1]))
-    }
-    
+  if (dim(df2)[1] <= 1) {
+  
+    df2$group <- as.factor(1)
+  
   } else {
-    breakpoints <- c(0, max(df2$stars_per_week))
-    labels <- paste0(sprintf("%02s", breakpoints[1]), "-", sprintf("%02s", breakpoints[2]))
-  }
+
+    if (dim(df2)[1] >= 10) {
     
-  ## Add groups and arrange
-  df2 <- df2 %>%
-    mutate(
-      group = cut(stars_per_week, 
-                  breaks = breakpoints, 
-                  label = labels, 
-                  include.lowest = T, 
-                  right = T, 
-                  ordered = T),
-      group = ordered(group, levels = c('',labels))
-    ) %>%
-    arrange(group)
-  
+      ##| Set breakpoints and labels
+      breakpoints <- ceiling(quantile(df2$stars_per_week))
+      breakpoints[1] <- 0
+      breakpoints <- sprintf("%02d", breakpoints)
+      
+      if (all(!duplicated(breakpoints))==F) {
+        breakpoints <- round(quantile(df2$stars_per_week),3)
+        breakpoints[1] <- 0
+        breakpoints <- sprintf("%02.3f", breakpoints)
+      }
+      
+      labels <- character()
+      for (i in 1:(length(breakpoints) - 1)) {
+        labels[i] <- paste0(sprintf("%02s", breakpoints[i]), "-", sprintf("%02s", breakpoints[i+1]))
+      }
+      
+    } else {
+      
+      breakpoints <- c(0, max(df2$stars_per_week))
+      labels <- paste0(sprintf("%02s", breakpoints[1]), "-", sprintf("%02s", breakpoints[2]))
+    
+    }
+    
+    ## Add groups and arrange
+    df2 <- df2 %>%
+      mutate(
+        group = cut(stars_per_week, 
+                    breaks = breakpoints, 
+                    label = labels, 
+                    include.lowest = T, 
+                    right = T, 
+                    ordered = T),
+        group = ordered(group, levels = c('',labels))
+      ) %>%
+      arrange(group)
+  }
+
   return(df2)
 
 })
