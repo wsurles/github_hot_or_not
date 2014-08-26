@@ -3,12 +3,14 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-tmp1 <- df_actors[colnames(df_actors) != 'language']
-# tmp1 <- select(df_actors, -language)
-tmp2 <- select(df_repos, language, repo_name)
-df <- left_join(tmp1, tmp2, by = 'repo_name')
+# tmp1 <- df_actors[colnames(df_actors) != 'language']
+
 
 filterActorLang <- reactive({
+
+  tmp1 <- select(df_actors, -language)
+  tmp2 <- select(df_repos, language, repo_name)
+  df <- left_join(tmp1, tmp2, by = 'repo_name')
   
   ## Filter language
   ## choice_lang <- 'JavaScript'
@@ -100,7 +102,7 @@ output$actor_repo_lang <- renderUI({
 output$actor_actor_lang <- renderUI({
   
   df <- filterActorLang()
-  df <- df[1:min(100, dim(df)[1]),]
+  # df <- df[1:min(100, dim(df)[1]),]
   actor_list <- sort(unique(df$actor))
   
   selectizeInput(inputId = "actor_actor_lang",
