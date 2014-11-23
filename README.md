@@ -17,9 +17,9 @@ This is intended as a demo of Shiny and rCharts functionality that I find useful
 The App is here  
 http://surlyanalytics.shinyapps.io/github_hot_or_not/
 
-You can learn more about creating apps like this from my presentation here.  
+SOme of the business value of an app like this is explained in this presentation.
 Creating an Approachable Data Product with R using Shiny and rCharts  
-http://wsurles.github.io/creating_an_approachable_data_product_with_R/  
+http://wsurles.github.io/github_hot_or_not/  
 
 I used google big query to get the github data. I provided it here in `/data`.   
 You can see how I got the data in `/cron/get_data.R`.  
