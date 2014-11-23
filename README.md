@@ -17,7 +17,7 @@ This is intended as a demo of Shiny and rCharts functionality that I find useful
 The App is here  
 http://surlyanalytics.shinyapps.io/github_hot_or_not/
 
-SOme of the business value of an app like this is explained in this presentation.
+Some of the business value of an app like this is explained in this presentation.
 Creating an Approachable Data Product with R using Shiny and rCharts  
 http://wsurles.github.io/github_hot_or_not/  
 
