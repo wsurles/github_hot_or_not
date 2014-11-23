@@ -1,1 +1,1114 @@
-My Page
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Creating an Approachable Data Product with R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Creating an Approachable Data Product with R">
+  <meta name="author" content="William Surles">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/nv.d3.css"></link>
+<link rel=stylesheet href="libraries/widgets/nvd3/css/rNVD3.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/slidify.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  <script src="libraries/widgets/nvd3/js/jquery-1.8.2.min.js"></script>
+<script src="libraries/widgets/nvd3/js/d3.v3.min.js"></script>
+<script src="libraries/widgets/nvd3/js/nv.d3.min-new.js"></script>
+<script src="libraries/widgets/nvd3/js/fisheye.js"></script>
+
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Creating an Approachable Data Product with R</h1>
+    <h2>Using Shiny and rCharts</h2>
+    <p>William Surles<br/>Product Data Scientist @ Rally Software</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="segue" id="slide-1" style="background:blue;">
+  <hgroup>
+    <h2>Intro</h2>
+  </hgroup>
+  <article data-timings="">
+    <!-- Limit image width and height -->
+
+<style type='text/css'>
+img {
+    max-height: 400px;
+    max-width: 800px;
+}
+</style>
+
+<!-- Center image on slide -->
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>A D3 chart</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src='
+assets/fig/unnamed-chunk-1.html
+' scrolling='no' seamless class='rChart 
+nvd3
+ '
+id=iframe-
+chart30d150a4c510
+></iframe>
+
+<style>iframe.rChart{ width: 100%; height: 400px;}</style>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Quiz</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>How many lines of code did I write to make this chart?</p>
+
+<ol>
+<li><em>1</em></li>
+<li>10</li>
+<li>100</li>
+<li>1000</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p>I used R not javascript/html/css</p>
+
+</div>
+<div class="quiz-explanation">
+  <pre><code class="s">n1 &lt;- nPlot(y ~ x, group = , data = , type =)
+</code></pre>
+
+</div>
+</div>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>About Me</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Mech Engr -&gt; Building Energy Researcher -&gt; Data Scientist</li>
+<li>Product Data Scientist at Rally Software</li>
+<li>Love exploring tools and techniques</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Who is Rally?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/rally-software.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>How I work with teams</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>I focus on product usage</li>
+<li>Data engineers and programmes</li>
+<li>Product owners and Developer teams</li>
+<li>Sales and Enablement teams</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Goal for Presentation</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>I want to share everything I have learned with you</li>
+<li>1 year of making shiny work in business</li>
+<li>I have figured out many small things that make it powerful</li>
+<li>Take it, Learn it, Change it, Improve it</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Outline</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Tool Overview</li>
+<li>Business value </li>
+<li>Demo</li>
+<li>Steps to make a shiny app</li>
+<li>Code chunks</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-9" style="background:blue;">
+  <hgroup>
+    <h2>Tool Overview</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-10" style="background:orange;">
+  <hgroup>
+    <h2>What is Shiny?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Shiny</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://shiny.rstudio.com/">http://shiny.rstudio.com/</a></p>
+
+<p><img src="assets/img/shiny.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Simple Shiny App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/histogram_example.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>ui.R</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">shinyUI(pageWithSidebar(
+  headerPanel(&quot;Simple Histogram App&quot;),
+  sidebarPanel(
+    selectInput(inputId = &quot;n_bins&quot;,
+                label = &quot;Number of bins&quot;,
+                choices = c(10, 20, 25, 30, 50),
+                selected = 20
+                )
+  ),
+  mainPanel(
+    plotOutput(outputId = &quot;main_plot&quot;)
+  )
+))
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>server.r</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">shinyServer(function(input,output){
+
+  output$main_plot &lt;- renderPlot({  
+    hist(faithful$eruptions,
+         breaks = as.numeric(input$n_bins),
+         col = &quot;green&quot;,
+         xlab = &quot;Duration (minutes)&quot;)  
+  })
+})
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Advanced Shiny App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/shiny_superzip.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Check out more examples</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://shiny.rstudio.com/gallery/">http://shiny.rstudio.com/gallery/</a></p>
+
+<p><img src="assets/img/shiny_gallery.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-17" style="background:orange;">
+  <hgroup>
+    <h2>What is rCharts?</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>rChart</h2>
+  </hgroup>
+  <article data-timings="">
+    <iframe src='
+assets/fig/unnamed-chunk-2.html
+' scrolling='no' seamless class='rChart 
+nvd3
+ '
+id=iframe-
+chart30d1d91ce94
+></iframe>
+
+<style>iframe.rChart{ width: 100%; height: 400px;}</style>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-19" style="background:;">
+  <hgroup>
+    <h2>rChart code</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">require(rCharts)
+require(knitr)
+haireye = as.data.frame(HairEyeColor)
+n1 &lt;- nPlot(Freq ~ Hair, 
+  group = &#39;Eye&#39;,
+  data = subset(haireye, Sex == &#39;Male&#39;),
+  type = &#39;multiBarChart&#39;
+)
+n1
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Shiny and rChart</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/interactive_analysis.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>More rChart examples</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://rcharts.io/gallery/">http://rcharts.io/gallery/</a></p>
+
+<p><img src="assets/img/rchart_gallery.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-22" style="background:blue;">
+  <hgroup>
+    <h2>Business Value</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Product Data Hub</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/img/pdh_module.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-24" style="background:;">
+  <hgroup>
+    <h2>Product Data Hub</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Built with R using Shiny and rCharts</li>
+<li>Interactive analysis and charts</li>
+<li>Embed other dashboard here also</li>
+<li>Serves many teams in Product and Sales</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Top 3 Reasons for Shiny</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Interactive - Individuals can easily slice and dice data</li>
+<li>Removes interrupts - Don&#39;t have to re-run and re-share analysis. </li>
+<li>Cheap - Free to build and share</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h2>More Reasons for Shiny</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Customizable - Pick your colors and style and layout</li>
+<li>Simple - One place to see everything that matters</li>
+<li>Extensible - Web functionality (navigation, modals, styles)</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h2>Top 3 Reasons for rCharts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Tooltips - Answers the next questions</li>
+<li>Beautiful - Looks great and D3 is amazing</li>
+<li>Density - Change the view right there</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h2>More Reasons for rCharts</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Simple - Don&#39;t need to write 3 languages 
+
+<ul>
+<li>html, css, javascript</li>
+</ul></li>
+<li>Unique - There are charts that no other library can make</li>
+<li>Presentation - Sharing is such a key part of the data flow<br></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-29" style="background:blue;">
+  <hgroup>
+    <h2>Demo</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>Github Hot or Not Shiny App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://surlyanalytics.shinyapps.io/github_hot_or_not/">http://surlyanalytics.shinyapps.io/github_hot_or_not/</a></p>
+
+<p><img src="assets/img/shiny_github.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>App repo</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="https://github.com/wsurles/github_hot_or_not">https://github.com/wsurles/github_hot_or_not</a></li>
+<li>Learn how to code this app</li>
+<li>Help me make it better</li>
+<li>Thanks!</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Shiny workshop</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><a href="https://github.com/wsurles/shiny_workshop/tree/advanced">https://github.com/wsurles/shiny_workshop/tree/advanced</a></li>
+<li>Build 3 apps self paced</li>
+<li>Progressively more powerful</li>
+<li>The steps are smooth. It has been tested.</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-33" style="background:blue;">
+  <hgroup>
+    <h2>Steps to make a shiny app</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Add inputs</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://shiny.rstudio.com/gallery/widgets-gallery.html">http://shiny.rstudio.com/gallery/widgets-gallery.html</a></p>
+
+<p><img src="assets/img/widgets.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Build charts and tables</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://shiny.rstudio.com/reference/shiny/latest/">http://shiny.rstudio.com/reference/shiny/latest/</a></p>
+
+<p><img src="assets/img/functions.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Add navigation</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://shiny.rstudio.com/reference/shiny/latest/">http://shiny.rstudio.com/reference/shiny/latest/</a></p>
+
+<p><img src="assets/img/nav.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Chose a theme</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><a href="http://bootswatch.com/">http://bootswatch.com/</a></p>
+
+<p><img src="assets/img/theme.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Embed other pages</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="s">tabPanel(&quot;tableau&quot;, includeHTML(&quot;tableau_dashboard.html&quot;), align = &#39;center&#39;)
+</code></pre>
+
+<p><img src="assets/img/tableau_dashboard.png" alt="img"></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue" id="slide-39" style="background:blue;">
+  <hgroup>
+    <h2>Code Chunks</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>R structure</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Use functions</h3>
+
+<pre><code class="s">output$plot_github &lt;- renderChart2({    
+
+  df &lt;- chooseLang()
+  df2 &lt;- crunchDataGithub(df)
+  df3 &lt;- filterGithub()
+  color &lt;- setColorGithub(df2,df3)
+  n &lt;- createPlotGithub(df3, color)  
+
+})
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>Dynamic UI elements</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>Build ui elements in server.R</h3>
+
+<pre><code class="s">output$repo_owner &lt;- renderUI({
+
+  df &lt;- chooseLang()
+  df2 &lt;- crunchDataGithub(df)
+  owner_list &lt;- sort(unique(df2$repository_owner))
+
+  selectizeInput(inputId = &quot;owner&quot;,
+                 label = h4(&quot;Owner:&quot;),
+                 choices = owner_list,
+                 multiple = TRUE)
+})
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-42" style="background:;">
+  <hgroup>
+    <h2>Scatter Chart</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="s">createPlotGithub &lt;- function(df2, color) {
+
+  df3 &lt;- select(df2, repository_watchers, age_days, watch_group, log_forks, 
+                     repository_name, watch_per_day, repository_owner, 
+                     repository_forks, date_created_str)
+
+  p &lt;- nPlot(repository_watchers ~ age_days, 
+              group = &#39;watch_group&#39;, 
+              data = df3, 
+              type = &#39;scatterChart&#39;)
+  p$yAxis(axisLabel = &#39;Stars&#39;)
+  p$xAxis(axisLabel = &#39;Age in Days&#39;)
+  p$chart(color = color)
+  p$chart(size = &#39;#! function(d){return d.log_forks} !#&#39;)
+
+  return(p)
+
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-43" style="background:;">
+  <hgroup>
+    <h2>Tooltip</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="s">p$chart(tooltipContent = &quot;#!
+          function(key, x, y, d){ 
+            return &#39;&lt;h3&gt;&#39; + d.point.repository_name + &#39;&lt;/h3&gt;&#39; +
+            &#39;&lt;p&gt; &lt;b&gt;&#39; +  d.point.watch_per_day + &#39; Stars/Day&#39; + &#39;&lt;/b&gt; &lt;/p&gt;&#39; +
+            &#39;&lt;p&gt; Owner = &#39; +  d.point.repository_owner + &#39;&lt;/p&gt;&#39; +
+            &#39;&lt;p&gt; Age in Days = &#39; +  d.point.age_days + &#39;&lt;/p&gt;&#39; +                    
+            &#39;&lt;p&gt; Stars = &#39; +  d.point.repository_watchers + &#39;&lt;/p&gt;&#39; +          
+            &#39;&lt;p&gt; Forks = &#39; +  d.point.repository_forks + &#39;&lt;/p&gt;&#39; +       
+            &#39;&lt;p&gt; Date Created = &#39; +  d.point.date_created_str + &#39;&lt;/p&gt;&#39;
+          }
+          !#&quot;)
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-44" style="background:;">
+  <hgroup>
+    <h2>Add javascript</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="s">createButtonLink &lt;- function(link, text) {
+  sprintf(&#39;
+      &lt;a class=&quot;mcnButton&quot; 
+      href=&quot;%s&quot; 
+      target=&quot;_blank&quot; 
+      style=&quot;font-weight: normal;
+             background-color: #337EC6;
+             ...  
+             color: #FFFFFF;
+             word-wrap: break-word !important; 
+             font-family:Arial;&quot;
+             &gt;%s&lt;/button&gt;
+             &#39;,link, text)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-45" style="background:;">
+  <hgroup>
+    <h2>Add css and style</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="s">shinyUI(
+
+  navbarPage(
+
+    id = &quot;nbp&quot;,
+    title = &quot;Data Hub&quot;, 
+    theme = &quot;bootstrap.css&quot;,
+    ...
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-46" style="background:;">
+  <hgroup>
+    <h2>Resources and References</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Shiny <a href="http://shiny.rstudio.com/">http://shiny.rstudio.com/</a></p>
+
+<p>Shiny tutorial <a href="https://github.com/wsurles/shiny_workshop">https://github.com/wsurles/shiny_workshop</a></p>
+
+<p>rCharts <a href="http://rcharts.io/">http://rcharts.io/</a></p>
+
+<p>Slidify <a href="http://slidify.github.io/">http://slidify.github.io/</a></p>
+
+<p>Slidify example <a href="http://slidify.github.io/dcmeetup/#1">http://slidify.github.io/dcmeetup/#1</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Intro'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='A D3 chart'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Quiz'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='About Me'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Who is Rally?'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='How I work with teams'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Goal for Presentation'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Outline'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Tool Overview'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='What is Shiny?'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Shiny'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Simple Shiny App'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='ui.R'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='server.r'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Advanced Shiny App'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Check out more examples'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='What is rCharts?'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='rChart'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='rChart code'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Shiny and rChart'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='More rChart examples'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Business Value'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Product Data Hub'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='Product Data Hub'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Top 3 Reasons for Shiny'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='More Reasons for Shiny'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Top 3 Reasons for rCharts'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='More Reasons for rCharts'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Demo'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Github Hot or Not Shiny App'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='App repo'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Shiny workshop'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Steps to make a shiny app'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Add inputs'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Build charts and tables'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Add navigation'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Chose a theme'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Embed other pages'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Code Chunks'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='R structure'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Dynamic UI elements'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Scatter Chart'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Tooltip'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Add javascript'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Add css and style'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Resources and References'>
+         46
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  
+  <script src="shared/shiny.js" type="text/javascript"></script>
+  <script src="shared/slider/js/jquery.slider.min.js"></script>
+  <script src="shared/bootstrap/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="shared/slider/css/jquery.slider.min.css"></link>
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
