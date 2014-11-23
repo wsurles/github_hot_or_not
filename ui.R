@@ -3,8 +3,8 @@ shinyUI(
   navbarPage(
   
     id = "nbp",
-		title = "Github Hot or Not", 
-		theme = "bootstrap.css",
+    title = "Github Hot or Not", 
+    theme = "bootstrap.css",
     collapsable = TRUE,
           
     tabPanel("Language", value = "language", 
