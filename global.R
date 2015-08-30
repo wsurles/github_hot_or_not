@@ -13,29 +13,51 @@ createGravatarImage <- function(id) {
       ', id)
 }
 
-##| create gravatar
+##|----------------
 createButtonLink <- function(link, text) {
-  sprintf('
-      <a class="mcnButton" 
-      href="%s" 
-      target="_blank" 
-      style="font-weight: normal;
-             background-color: #337EC6;
-             border-radius: 5px;
-             border: 6px solid #337EC6;
-             cursor: pointer;
-             letter-spacing: -0.5px;
-             text-align: center;
-             text-decoration: none;
-             color: #FFFFFF;
-             word-wrap: break-word !important; 
-             font-family:Arial;"
-             >%s</button>
-             ',link, text)
+  sprintf('<a href="%s" target="_blank" class="btn btn-primary">%s</a>', link, text)
 }
-##| Email button so I can get some feedback from users
+##|----------------
+
+##| create gravatar
+# createButtonLink <- function(link, text) {
+#   sprintf('
+#       <a class="mcnButton" 
+#       href="%s" 
+#       target="_blank" 
+#       style="font-weight: normal;
+#              background-color: #337EC6;
+#              border-radius: 5px;
+#              border: 6px solid #337EC6;
+#              cursor: pointer;
+#              letter-spacing: -0.5px;
+#              text-align: center;
+#              text-decoration: none;
+#              color: #FFFFFF;
+#              word-wrap: break-word !important; 
+#              font-family:Arial;"
+#              >%s</button>
+#              ',link, text)
+# }
+# ##| Email button so I can get some feedback from users
+# emailButton <- function(title, link) {
+#   html <- sprintf("<a href='%s'  class='btn btn-success btn-lg'>%s</a>", link, title)
+#   Encoding(html) <- 'UTF-8'
+#   HTML(html)
+# }
+##|------------------------------------------
+##| Helper Functions
+##|------------------------------------------
+
+##| converts markdown files to html using markdown package and returns result
+inclMD <- function(file) return(markdownToHTML(file, options = c(""), stylesheet="shared/shiny.css"))
+
+##| Email link that looks like a button
+##| - This will open the default email client and populate fields
 emailButton <- function(title, link) {
-  html <- sprintf("<a href='%s'  class='btn btn-success btn-lg'>%s</a>", link, title)
+  html <- sprintf("
+    <a href='%s'  class='btn btn-success'>%s</a>
+    ", link, title)
   Encoding(html) <- 'UTF-8'
   HTML(html)
 }
@@ -61,6 +83,3 @@ helpModal <- function(title, link, content) {
   Encoding(html) <- 'UTF-8'
   HTML(html)
 }
-
-inclMD <- function(file) return(markdownToHTML(file, options = c(""), stylesheet="www/empty.css"))
-

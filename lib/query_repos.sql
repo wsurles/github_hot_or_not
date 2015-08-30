@@ -9,13 +9,13 @@ SELECT
   ,gt.repository_watchers as stars
   ,gt.created_at as action_at
   ,gt.repository_description as description
-FROM [githubarchive:github.timeline] gt
+FROM githubarchive:github.timeline gt
 INNER JOIN EACH(
     SELECT 
       repository_name
      ,MAX(repository_watchers) as stars
      ,MAX(created_at) AS created_at
-    FROM [githubarchive:github.timeline] 
+    FROM githubarchive:github.timeline 
     WHERE
       PARSE_UTC_USEC(created_at) >= PARSE_UTC_USEC("2014-01-01 00:00:00")
       AND repository_watchers > 0

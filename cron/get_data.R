@@ -1,14 +1,16 @@
 ##|-----------------------------------------
-##| Get github data from google big query
+##| Initilize
 ##|-----------------------------------------
 
-# setwd("~/Dev/non_work_projects/github_hot_or_not")
 library(bigrquery)
 source("creds/creds_bigquery.R")
 
-##| Repos
+##|--------------------------------
+##| Get Repo Data
+##|--------------------------------
+
 sql <- paste(readLines("lib/query_repos.sql", warn=F), collapse="\n")
-df_repos <- query_exec("publicdata", "samples", sql, billing = billing_project, max_pages = Inf)
+df_repos <- query_exec(sql, project = Sys.getenv("project_id"), max_pages = Inf)
 save(df_repos, file = 'data/repos.RData')
 
 ##|--------------------------------

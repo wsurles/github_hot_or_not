@@ -1,0 +1,5 @@
+name: github_hot_or_not
+account: surlyanalytics
+bundleId: 45767
+url: http://surlyanalytics.shinyapps.io/github_hot_or_not
+server: shinyapps.io

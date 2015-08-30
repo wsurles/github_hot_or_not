@@ -6,13 +6,9 @@
 - Bubbles are colored by Stars/Week.   
 - Red and Orange are Hot. Green and Blue are not as hot.
 - The new hottness will be the highest bubbles on the lower left. 
+- Older staples will be on the upper to mid right
 
 ![](figures/scatter.png)
-
-##### Why the log log axis?
-It spreads out the data so you can see all ranges. 
-Withouth this bubbles are crunched in the bottom corner accept the top languages.
-
 
 #### Use the filters to drilldown
 - Select the language you are interested in.

@@ -1,3 +1,3 @@
 
-##| NOTE: This is not a real billing number. 
-billing_project <- "123456789" # put your project number here
+##| NOTE: This is not a real project_id. 
+Sys.setenv(project_id = "fantastic-voyage-389") # put your project ID here

@@ -7,7 +7,7 @@
 - Up means more stars. Right means more repos.  
 - Bubble size is based on number of forks.       
 
-### Why the log log axis?
+### Why the log x axis?
 It spreads out the data so you can see all ranges. 
 Withouth this bubbles are crunched in the bottom corner accept the top languages.
 
