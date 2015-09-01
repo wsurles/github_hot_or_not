@@ -3,54 +3,11 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-crunchDataLanguage <- function(df_repos) {
-  
-#   df <- unique(df_repos)
-  df <- df_repos
-  
-  df2 <- df %>%
-    group_by(language) %>%
-    summarize(
-      stars = sum(stars),
-      repos = n(),
-      forks = sum(forks)
-    ) %>%
-    filter(!(is.na(language))) %>%
-    mutate(
-      log_stars = log10(stars),
-      log_repos = log10(repos),
-      log_forks = log10(forks),
-      log_stars = ifelse(is.finite(log_stars) == F, 0, log_stars),
-      log_repos = ifelse(is.finite(log_repos) == F, 0, log_repos),
-      log_forks = ifelse(is.finite(log_forks) == F, 0, log_forks),
-      stars_per_repo = stars/repos,
-      hottness = stars_per_repo * log_repos
-    )
-  
-  ##| Set breakpoints and labels
-  # breakpoints <- sprintf("%02d", round(quantile(df2$stars_per_repo, na.rm=T)))
-  breakpoints <- sprintf("%02d", round(quantile(df2$hottness, na.rm=T)))
-  
-  labels <- character()
-  for (i in 1:(length(breakpoints) - 1)) {
-    labels[i] <- paste0(sprintf("%02s", breakpoints[i]), "-", sprintf("%02s", breakpoints[i+1]))
-  }
-
-  ## Add groups and arrange
-  df2 <- df2 %>%
-    mutate(
-      group = cut(hottness, 
-         breaks = breakpoints, 
-         label = labels, 
-         include.lowest = T, 
-         right = T, 
-         ordered = T),
-      group = ordered(group, levels = c('',labels))
-    ) %>%
-    arrange(group)
-    
+getDataLang <- reactive({
+  load('data/df_lang.RData')
+  df2 <- df_lang
   return(df2)
-}
+})
 
 filterLanguage <- reactive({
   ##| Fitler on Language
@@ -59,7 +16,7 @@ filterLanguage <- reactive({
   ##| - '' group will be plotted in a light color
   ##| - Rearrange after changing group to maintain color order
     
-  df3 <- crunchDataLanguage(df_repos)
+  df3 <- getDataLang()
   # input <- data.frame(lang_language = 'CSS')
   
   ## Filter dots 
@@ -94,16 +51,11 @@ setColorLanguage <- function(df2, df3) {
 ##| Plot Functions
 ##| --------------------------------------------
 
-createPlotLanguage <- function(df3, color) {
+createPlotLanguage <- reactive({
   
-  # head(df2)
-  
-  # df3 <- df2
-#   df3 <- df2 %>%
-#     mutate(hottness = stars_per_repo * log_repos) %>%
-#     arrange(desc(hottness))
-  
-  # head(df3, 15)
+  df2 <- getDataLang()
+  df3 <- filterLanguage()
+  color <- setColorLanguage(df2,df3)
   
   df4 <- select(df3, log_stars, log_repos, group, log_forks, language, stars_per_repo,
     stars, repos, forks, hottness)
@@ -124,10 +76,12 @@ createPlotLanguage <- function(df3, color) {
             '<p> Forks = ' +  d.point.forks + '</p>'
           }
           !#")
-  p
-return(p)
+  
+  if (v$update_list_lang <= 0) {v$update_list_lang <- v$update_list_lang + 1}
+  
+  return(p)
 
-}
+})
 
 ##| --------------------------------------------
 ##| Render UI Functions
@@ -136,12 +90,23 @@ return(p)
 ##| Language
 output$lang_language <- renderUI({
   
-  lang_list <- sort(unique(df_repos$language))
-  
   selectizeInput(inputId = "lang_language",
               label = h4("Language:"),
-              choices = lang_list,
+              choices = NULL,
               multiple = TRUE)
+})
+
+
+observeEvent(v$update_list_lang, {
+
+  df_lang <- getDataLang()
+  list_lang <- sort(unique(df_lang$language))
+  
+  updateSelectInput(
+    session, 
+    inputId = 'lang_language',
+    choices = list_lang
+  )
 })
 
 ##| --------------------------------------------
@@ -150,10 +115,7 @@ output$lang_language <- renderUI({
 
 output$plot_language <- renderChart2({    
   
-  df2 <- crunchDataLanguage(df_repos)
-  df3 <- filterLanguage()
-  color <- setColorLanguage(df2,df3)
-  n <- createPlotLanguage(df3, color)  
+  n <- createPlotLanguage()  
   
 })
 

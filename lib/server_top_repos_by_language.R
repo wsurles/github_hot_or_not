@@ -3,45 +3,29 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-crunchDataRepoTopLang <- reactive({
-  
-  # choice_lang <- 'R'
-  choice_lang <- if (is.null(input$repo_top_language_lang)) 'JavaScript' else input$repo_top_language_lang
-  
-  df <- df_repos
-  
+getDataTopReposByLang <- reactive({
+  load('data/df_top_repos_by_lang.RData')
 
-    
-  ## Initial crunch
-  df2 <- df %>%
-    filter(language == choice_lang) %>%
-    mutate(
-      date_created = as.Date(created_at),
-      date_created_str = as.character(date_created),
-      age_days = as.numeric(today() - date_created),
-      
-      stars_per_week = round(stars/age_days*7, 3),
-      
-      log_stars = log10(stars),
-      log_forks = log10(forks),
-      
-      log_stars = ifelse(is.finite(log_stars) == F, 0, log_stars),
-      log_forks = ifelse(is.finite(log_forks) == F, 0, log_forks)
-    ) %>%
-    arrange(desc(stars))
+  # choice_lang <- 'R'
+  validate(
+    need(!is.null(input$repo_top_language_lang), "Loading Data")
+  )
+  
+  df2 <- df_top_repos_by_lang %>%
+    filter(language == input$repo_top_language_lang)
   
   df2 <- df2[1:min(100, dim(df2)[1]),]
   
   ## Wrapping this in an if statement prevents an error message when no language is selected
   
   if (dim(df2)[1] <= 1) {
-  
-    df2$group <- as.factor(1)
-  
-  } else {
-
-    if (dim(df2)[1] >= 10) {
     
+    df2$group <- as.factor(1)
+    
+  } else {
+    
+    if (dim(df2)[1] >= 10) {
+      
       ##| Set breakpoints and labels
       breakpoints <- ceiling(quantile(df2$stars_per_week))
       breakpoints[1] <- 0
@@ -62,7 +46,7 @@ crunchDataRepoTopLang <- reactive({
       
       breakpoints <- c(0, max(df2$stars_per_week))
       labels <- paste0(sprintf("%02s", breakpoints[1]), "-", sprintf("%02s", breakpoints[2]))
-    
+      
     }
     
     ## Add groups and arrange
@@ -78,10 +62,10 @@ crunchDataRepoTopLang <- reactive({
       ) %>%
       arrange(group)
   }
-
+  
   return(df2)
-
 })
+
 
 filterRepoTopLang <- reactive({
   ##| Fitler on Owner
@@ -90,7 +74,7 @@ filterRepoTopLang <- reactive({
   ##| - '' group will be plotted in a light color
   ##| - Rearrange after changing group to maintain color order
   
-  df3 <- crunchDataRepoTopLang()
+  df3 <- getDataTopReposByLang()
   # df3 <- df2  
   #  input <- data.frame(repo_top_language = 'Matlab')
   
@@ -129,7 +113,11 @@ setColorRepoTopLang <- function(df2, df3) {
 ##| Plot Functions
 ##| --------------------------------------------
 
-createPlotRepoTopLang <- function(df3, color) {
+createPlotRepoTopLang <- reactive({
+  
+  df2 <- getDataTopReposByLang()
+  df3 <- filterRepoTopLang()
+  color <- setColorRepoTopLang(df2,df3)
   
   df4 <- select(df3, stars, log_stars, age_days, group, log_forks, 
                 repo_name, language, stars_per_week, 
@@ -156,7 +144,7 @@ createPlotRepoTopLang <- function(df3, color) {
   
   return(p2)
   
-}
+})
 
 ##| --------------------------------------------
 ##| Render UI Functions
@@ -165,18 +153,22 @@ createPlotRepoTopLang <- function(df3, color) {
 ##| Language
 output$repo_top_language_lang <- renderUI({
   
-  lang_list <- sort(unique(df_repos$language))
+  df2 <- getDataLang()
+  list_lang <- sort(unique(df2$language))
+  print(list_lang)
   
-  selectizeInput(inputId = "repo_top_language_lang",
-              label = h4("Language:"),
-              choices = lang_list,
-              selected = 'JavaScript')
+  selectizeInput(
+    inputId = "repo_top_language_lang",
+    label = h4("Language:"),
+    choices = list_lang,
+    selected = 'JavaScript'
+    )
 })
 
 ##| Owner
 output$repo_top_owner_lang <- renderUI({
   
-  df2 <- crunchDataRepoTopLang()
+  df2 <- getDataTopReposByLang()
   owner_list <- sort(unique(df2$owner))
   
   selectizeInput(inputId = "repo_top_owner_lang",
@@ -188,7 +180,7 @@ output$repo_top_owner_lang <- renderUI({
 ##| Owner
 output$repo_top_repo_lang <- renderUI({
   
-  df2 <- crunchDataRepoTopLang()
+  df2 <- getDataTopReposByLang()
   repo_list <- sort(unique(df2$repo_name))
   
   selectizeInput(inputId = "repo_top_repo_lang",
@@ -204,10 +196,7 @@ output$repo_top_repo_lang <- renderUI({
 
 output$plot_repo_top_lang <- renderChart2({    
   
-  df2 <- crunchDataRepoTopLang()
-  df3 <- filterRepoTopLang()
-  color <- setColorRepoTopLang(df2,df3)
-  n <- createPlotRepoTopLang(df3, color)  
+  n <- createPlotRepoTopLang()  
   
 })
 

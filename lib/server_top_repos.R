@@ -3,52 +3,11 @@
 ##| Crunch Data Functions
 ##| --------------------------------------------
 
-crunchDataRepoTop <- function() {
-  
-  df2 <- df_repos[1:500,]
-  
-  ## Initial crunch
-  df2 <- df2 %>%
-    mutate(
-      date_created = as.Date(created_at),
-      date_created_str = as.character(date_created),
-      age_days = as.numeric(today() - date_created),
-      
-      stars_per_week = round(stars/age_days*7, 1),
-      
-      log_stars = log10(stars),
-      log_forks = log10(forks),
-      
-      log_stars = ifelse(is.finite(log_stars) == F, 0, log_stars),
-      log_forks = ifelse(is.finite(log_forks) == F, 0, log_forks)
-    )
-  
-  ##| Set breakpoints and labels
-  breakpoints <- ceiling(quantile(df2$stars_per_week))
-  breakpoints[1] <- 0
-  breakpoints <- sprintf("%02d", breakpoints)
-  
-  labels <- character()
-  for (i in 1:(length(breakpoints) - 1)) {
-    labels[i] <- paste0(sprintf("%02s", breakpoints[i]), "-", sprintf("%02s", breakpoints[i+1]))
-  }
-  
-  ## Add groups and arrange
-  df2 <- df2 %>%
-    mutate(
-      group = cut(stars_per_week, 
-                  breaks = breakpoints, 
-                  label = labels, 
-                  include.lowest = T, 
-                  right = T, 
-                  ordered = T),
-      group = ordered(group, levels = c('',labels))
-    ) %>%
-    arrange(group)
-  
+getDataTopRepos <- reactive({
+  load('data/df_top_repos.RData')
+  df2 <- df_top_repos
   return(df2)
-
-}
+})
 
 filterRepoTop <- reactive({
   ##| Fitler on Owner
@@ -57,7 +16,7 @@ filterRepoTop <- reactive({
   ##| - '' group will be plotted in a light color
   ##| - Rearrange after changing group to maintain color order
     
-  df3 <- crunchDataRepoTop()
+  df3 <- getDataTopRepos()
   #  input <- data.frame(repo_top_language = 'JavaScript')
   
   ## Filter dots 
@@ -97,7 +56,11 @@ setColorRepoTop <- function(df2, df3) {
 ##| Plot Functions
 ##| --------------------------------------------
 
-createPlotRepoTop <- function(df2, color) {
+createPlotRepoTop <- reactive({
+  
+  df2 <- getDataTopRepos()
+  df3 <- filterRepoTop()
+  color <- setColorRepoTop(df2,df3)
   
   df3 <- select(df2, stars, log_stars, age_days, group, log_forks, 
                 repo_name, language, stars_per_week, 
@@ -123,7 +86,7 @@ createPlotRepoTop <- function(df2, color) {
   
   return(p2)
   
-}
+})
 
 ##| --------------------------------------------
 ##| Render UI Functions
@@ -132,7 +95,7 @@ createPlotRepoTop <- function(df2, color) {
 ##| Language
 output$repo_top_language <- renderUI({
   
-  df2 <- crunchDataRepoTop()
+  df2 <- getDataTopRepos()
   lang_list <- sort(unique(df2$language))
   
   selectizeInput(inputId = "repo_top_language",
@@ -144,7 +107,7 @@ output$repo_top_language <- renderUI({
 ##| Owner
 output$repo_top_owner <- renderUI({
   
-  df2 <- crunchDataRepoTop()
+  df2 <- getDataTopRepos()
   owner_list <- sort(unique(df2$owner))
   
   selectizeInput(inputId = "repo_top_owner",
@@ -156,7 +119,7 @@ output$repo_top_owner <- renderUI({
 ##| Owner
 output$repo_top_repo <- renderUI({
   
-  df2 <- crunchDataRepoTop()
+  df2 <- getDataTopRepos()
   repo_list <- sort(unique(df2$repo_name))
   
   selectizeInput(inputId = "repo_top_repo",
@@ -172,10 +135,7 @@ output$repo_top_repo <- renderUI({
 
 output$plot_repo_top <- renderChart2({    
   
-  df2 <- crunchDataRepoTop()
-  df3 <- filterRepoTop()
-  color <- setColorRepoTop(df2,df3)
-  n <- createPlotRepoTop(df3, color)  
+  n <- createPlotRepoTop()  
   
 })
 
