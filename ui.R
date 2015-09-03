@@ -15,11 +15,8 @@ shinyUI(
       )
     ),
     dashboardBody(
-      # tags$head(tags$script(src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.1.0/lodash.min.js")),
       tags$head(tags$script(src="custom_scripts.js")),
       includeCSS("www/custom_style.css"),
-      includeHTML("www/get_font_awesome.html"),
-      # initStore("store", "github_hot_or_not"),
       tabItems(
         tabItem(tabName = "languages", uiOutput("tab_languages")),
         tabItem(tabName = "top_repos", uiOutput("tab_top_repos")),

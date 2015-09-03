@@ -62,11 +62,11 @@ createPlotRepoTop <- reactive({
   df3 <- filterRepoTop()
   color <- setColorRepoTop(df2,df3)
   
-  df3 <- select(df2, stars, log_stars, age_days, group, log_forks, 
+  df4 <- select(df3, stars, log_stars, age_days, group, log_forks, 
                 repo_name, language, stars_per_week, 
                 forks, date_created_str)
   
-  p2 <- nPlot(log_stars ~ age_days, group = 'group', data = df3, type = 'scatterChart')
+  p2 <- nPlot(log_stars ~ age_days, group = 'group', data = df4, type = 'scatterChart')
   p2$yAxis(axisLabel = 'Stars')
   p2$xAxis(axisLabel = 'Age in Days')
   p2$chart(color = color)
@@ -96,11 +96,11 @@ createPlotRepoTop <- reactive({
 output$repo_top_language <- renderUI({
   
   df2 <- getDataTopRepos()
-  lang_list <- sort(unique(df2$language))
+  list_lang <- sort(unique(df2$language))
   
   selectizeInput(inputId = "repo_top_language",
               label = h4("Language:"),
-              choices = lang_list,
+              choices = list_lang,
               multiple = TRUE)
 })
 

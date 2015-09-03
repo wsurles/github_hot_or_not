@@ -5,12 +5,12 @@ output$tab_top_repos_by_language <- renderUI({
     ##| Header  
     div(class = "jumbotron",
       column(8, offset = 2,
-        h2("Top 100 Repos by Language on Github", align = 'center')
+        h2("Top 100 Repos by Language on GitHub", align = 'center')
       ),
       fluidRow(
         column(8, offset = 2, align = 'center',
           actionButton("button_modal_help_top_repo", "Explain this Tool", class='btn btn-primary',  style = 'color: white;'),      
-          emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on Github Hot or Not')
+          emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on GitHub Hot or Not')
         )
       )
     ),

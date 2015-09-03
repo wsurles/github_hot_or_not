@@ -8,12 +8,12 @@ output$tab_languages <- renderUI({
     ##| Header
     div(class = "jumbotron",
       column(8, offset = 2,
-        h2("All Languages on Github", align = 'center')
+        h2("All Languages on GitHub", align = 'center')
       ),
       fluidRow(
         column(8, offset = 2, align = 'center',
           actionButton("button_modal_help_language", "Explain this Tool", class='btn btn-primary',  style = 'color: white;'),      
-          emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on Github Hot or Not')
+          emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on GitHub Hot or Not')
         )
       )
     ),
@@ -23,7 +23,7 @@ output$tab_languages <- renderUI({
     ##| Chart Description
     fluidRow(
       column(12,
-        h3("Stars vs Repos for all Languages on Github", align = 'center'),
+        h3("Stars vs Repos for all Languages on GitHub", align = 'center'),
         h5("This chart shows repository stars vs repos.", 
           br(), "Each bubble is a language. The colors are based on stars per repo.", align = 'center')
       )

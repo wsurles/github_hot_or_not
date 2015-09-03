@@ -6,6 +6,7 @@
 getDataLang <- reactive({
   load('data/df_lang.RData')
   df2 <- df_lang
+    
   return(df2)
 })
 
@@ -95,7 +96,6 @@ output$lang_language <- renderUI({
               choices = NULL,
               multiple = TRUE)
 })
-
 
 observeEvent(v$update_list_lang, {
 

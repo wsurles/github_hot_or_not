@@ -9,12 +9,12 @@ output$tab_top_repos <- renderUI({
     ##| Header
     div(class = "jumbotron",
       column(8, offset = 2,
-        h2("Top 500 Repos on Github", align = 'center')
+        h2("Top 500 Repos on GitHub", align = 'center')
       ),
       fluidRow(
         column(8, offset = 2, align = 'center',
           actionButton("button_modal_help_repos", "Explain this Tool", class='btn btn-primary',  style = 'color: white;'),      
-          emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on Github Hot or Not')
+          emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on GitHub Hot or Not')
         )
       )
     ),
@@ -23,14 +23,14 @@ output$tab_top_repos <- renderUI({
     # ##| Header
     # fluidRow(
     #   column(8, offset = 2,
-    #     h2("Top 500 Repos on Github", align = 'center')
+    #     h2("Top 500 Repos on GitHub", align = 'center')
     #   )
     # ),
     
     # ##| Help
     # fluidRow(
     #   column(2, offset = 4, helpModal('Explain this Tool','explain_repos',inclMD("help/explain_repos.md"))),          
-    #   column(2, emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on Github Hot or Not'))
+    #   column(2, emailButton('Send Feedback', 'mailto:williamsurles@gmail.com?subject=Feedback on GitHub Hot or Not'))
     # ),
     # br(),
     hr(),
